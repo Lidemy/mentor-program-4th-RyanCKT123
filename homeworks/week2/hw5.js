@@ -1,6 +1,6 @@
-function join(arr, concatStr) {
+// function join(arr, concatStr) {
   
-}
+// }
 
 var Newstr=''
 function repeat(str, times) {
@@ -11,5 +11,5 @@ function repeat(str, times) {
     return Newstr;
 }
 
-console.log(join(['a'], '!'));
+// console.log(join(['a'], '!'));
 console.log(repeat('abb', 5));
