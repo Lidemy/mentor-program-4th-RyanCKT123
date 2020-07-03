@@ -1,3 +1,4 @@
+/*eslint-disable*/
 function capitalize(str) {
     arr = []
     arr = str.split("")
@@ -5,7 +6,7 @@ function capitalize(str) {
     if(96 < arr[0].charCodeAt() && arr[0].charCodeAt() < 123){
           arr[0] = arr[0].toUpperCase()}
     arr = arr.join("");
-    console.log(arr)
+    return arr
   };
   
   

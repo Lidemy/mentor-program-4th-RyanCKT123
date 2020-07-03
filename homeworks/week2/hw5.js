@@ -1,3 +1,4 @@
+/*eslint-disable*/
  function join(arr, concatStr) {
     var Joinstr = ""
     for(var i = 0; i < arr.length; i++){
@@ -9,8 +10,8 @@
     return Joinstr;    
  }
 
-var Newstr=''
 function repeat(str, times) {
+    var Newstr=''
     for(var i = 0; i < times; i++){
         Newstr += str;
         // console.log(Newstr);
