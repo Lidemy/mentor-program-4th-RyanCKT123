@@ -1,11 +1,12 @@
 const readline = require('readline');
 
+const lines = [];
+
 const rl = readline.createInterface({
   input: process.stdin,
 });
 
 // 上面都不用管，只需要完成這個 function 就好，可以透過 lines[i] 拿取內容
-const lines = [];
 function solve(input) {
   for (let j = 1; j <= input; j += 1) {
     let tem = '';
