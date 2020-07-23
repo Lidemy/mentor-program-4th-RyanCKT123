@@ -151,9 +151,51 @@
           width: 100%;
       }
 
+      .section_comments {
+          display: flex;
+          margin-top: 60px;
+      }
+
+      .section_comments .section_comment {
+          border: 1px solid #c7e5ec;
+          box-shadow: -1.4px -1.4px 4px 0 #d8eaef;
+          width: 33.3%;
+          height: 205px;
+          position: relative;
+      }
+
+      .section_comment + .section_comment {
+          margin-left: 16px;
+      }
+
+
+      .section_comments .section_comment .commenter {
+          position: relative;
+          top: -54px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 105px;
+          height: 105px;
+      }
+
+      .section_comments .section_comment .comment_content {
+          line-height: 1.5em;
+          letter-spacing: 0.14;
+          text-align: center;
+          margin-top: -20px;
+          padding: 0px 20px 39px 20px;
+      }
+
+      .section_comments .section_comment .comment_name {
+          letter-spacing: 0.14px;
+          position: absolute;
+          top: 56px;
+          left: 50%;
+          transform: translateX(-50%);
+      }
+
       footer {
           margin-top: 48px;
-
       }
 
       .footer_top {
@@ -228,6 +270,23 @@
       .section_photos .section_photo {
           width: 100%;
       }
+
+      .section_comments {
+          flex-direction: column;
+      }
+
+      .section_comment + .section_comment {
+          margin-left: 0px;
+          margin-top: 82px;
+      }
+
+      .section_comments .section_comment {
+          width: 100%;
+          height: 100%;
+          border: 1px solid #c7e5ec;
+          box-shadow: -1.4px -1.4px 4px 0 #d8eaef;
+          position: relative;
+      }
       
       .footer_top .wrapper {
           flex-direction: column-reverse;
@@ -291,6 +350,29 @@
         </div>
     </section>
     <div class="wrapper">
+        <section class="section">
+            <h2 class="section_title">
+                吃過的說好
+            </h2>
+            <div class="section_comments">
+                <div class="section_comment">
+                    <div class="commenter"><img src="p-1.png" /></div>
+                    <div class="comment_name">國父桑</div>
+                    <div class="comment_content">我一生疲於建國，去過日本，去過歐洲，卻從未到過台北101，也從來沒有吃過這麼好吃的東西...今天在時空旅行者的幫助下我終於吃到了...此生再無遺憾 QAQ!!</div>
+                </div>
+                <div class="section_comment center">
+                    <div class="commenter"><img src="p-2.png" /></div>
+                    <div class="comment_name">可達鴨</div>
+                    <div class="comment_content">三雙鞋等於30，兩個人加一雙鞋等於20，一雙冰淇淋加一雙冰淇淋加一個人等於13，那$#%$#%^%$^##$%等於多少...唉，大概咬一口就知道了!!!
+                    </div>
+                </div>
+                <div class="section_comment">
+                    <div class="commenter"><img src="p-3.png" /></div>
+                    <div class="comment_name">旅かえる旅行青蛙</div>
+                    <div class="comment_content">自從呱呱呱呱呱以後，我呱呱呱呱呱，非常感謝呱呱呱呱呱，下次呱呱呱呱呱我呱呱呱呱呱，一定呱呱呱呱呱!!!                    </div>
+                </div>
+            </div>
+        </section>
         <section class="section">
             <h2 class="section_title">
                 我們在哪裡
