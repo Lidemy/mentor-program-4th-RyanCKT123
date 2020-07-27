@@ -72,13 +72,16 @@
         margin-bottom: 20px;
       }
 
-      .form .item::after {
-        content: " *";
-        color: red;
+      
+
+      .required:after {
+        content: '*';
+        color: #e74149;
+        margin-left: 5px;
       }
 
       .form .blank {
-        color: #afafaf;
+        color: black;
         font-size: 16px;
         width: 287px;
         height: 23px;
@@ -99,11 +102,9 @@
         margin-bottom: 23px;
       }
 
-      .signtype .type::before {
-        content: '●';
-        color: #d0d0d0;
-        font-size: 12px;
-        margin-right: 9px;
+      .signtype label {
+        display: block;
+        margin-top: 12px;
       }
 
       .downpart {
@@ -131,6 +132,8 @@
         height: 23px;
         border-color: #d0d0d0;
       }
+
+
 
       .btn {
         background-color: #fad312;
@@ -198,24 +201,30 @@
                     *必填
                 </div>
                 <div class="form">
-                    <div class="item">暱稱</div>
+                    <div class="item required">暱稱</div>
                     <input class="blank" placeholder="您的回答"></input>
                 </div>
                 <div class="form">
-                    <div class="item">電子郵件</div>
+                    <div class="item required">電子郵件</div>
                     <input class="blank" placeholder="您的電子郵件"></input>
                 </div>
                 <div class="form">
-                    <div class="item">手機號碼</div>
+                    <div class="item required">手機號碼</div>
                     <input class="blank" placeholder="您的手機號碼"></input>
                 </div>
                 <div class="signtype">
                     <div class="item">報名類型</div>
-                    <div class="type">躺在床上用想像力實作</div>
-                    <div class="type">趴在地上滑手機找現成的</div>
+                    <label>
+                        <input name="type" value="1" type="radio" /> 躺在床上用想像力實作
+                      </label>
+            
+                      <label>
+                        <input name="type" value="2" type="radio" />
+                         趴在地上滑手機找現成的
+                      </label>
                 </div>
                 <div class="form downpart">
-                    <div class="item">怎麼知道這個活動的？</div>
+                    <div class="item required">怎麼知道這個活動的？</div>
                     <input class="blank" placeholder="您的回答"></input>
                 </div>
                 <div class="otherform">
