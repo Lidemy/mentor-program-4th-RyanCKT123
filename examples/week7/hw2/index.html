@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
 
-  <title>餐廳官網</title>
+  <title>Office Website of Resturant</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css" />
 
@@ -236,46 +236,6 @@
       line-height: 1.5em;
     }
 
-    .faq-block {
-      margin: 0 auto;
-      max-width: 768px;
-    }
-
-    .faq-item {
-      display: flex;
-      text-align: left;
-      padding-bottom: 24px;
-      border-bottom: solid 1px #a6e2c0;
-      overflow: hidden;
-      cursor: pointer;
-    }
-
-    .faq-item:not(:first-child) {
-      margin-top: 24px;
-    }
-
-    .faq-item__number {
-      color: #70b282;
-      font-size: 24px;
-      margin-right: 16px;
-      line-height: 24px;
-    }
-
-    .faq-item__content h2 {
-      font-size: 18px;
-      margin: 0;
-      font-weight: normal;
-      line-height: 24px;
-    }
-
-    .faq-item__content p {
-      font-size: 16px;
-    }
-
-    .faq-item--hide {
-      height: 15px;
-    }
-
     @media(max-width: 768px) {
       .navbar .wrapper {
         height: 120px;
@@ -333,6 +293,43 @@
       }
     }
 
+      .question_row {
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        max-width: 810px;
+        min-height: 74px;
+        border-bottom: 1px solid #a6e2c0;
+        align-items:flex-start;
+        flex-direction: column;
+      }
+
+      .question_row .title_num {
+        display: inline-block;
+        color: #70b282;
+        font-size: 24px;
+      }
+
+      .question_row .title_content {
+        display: inline-block;
+        font-size: 18px;
+      }
+
+      .question_row .para {
+        text-align: left;
+        font-size: 16px;
+        letter-spacing: 0.14px;
+        line-height: 2em;
+        margin: 24px 55px 35px 42px;
+      }
+
+      .para_hide {
+        display: none;
+      }
+
+
+
    
   </style>
 </head>
@@ -352,63 +349,92 @@
     </div>
   </nav>
   
-  <div class="wrapper">
-    <section class="section">
+    <section class="section title_wrapper">
       <h2 class="section__title">
         FAQ - 常見問題
       </h2>
-
-      <div class="faq-block">
-        <div class="faq-item faq-item--hide">
-          <div class='faq-item__number'>
-            Q0:
-          </div>
-          <div class="faq-item__content">
-            <h2>如何辦理退貨</h2>
-            <p>線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～</p>
-          </div>
+      <div class="question_row">
+        <div class="quest_title">
+          <div class="title_num">Q1:</div>
+          <div class="title_content">如何辦理退貨？</div>
         </div>
-        <div class="faq-item faq-item--hide">
-          <div class='faq-item__number'>
-            Q1:
-          </div>
-          <div class="faq-item__content">
-            <h2>如何辦理退貨</h2>
-            <p>線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～</p>
-          </div>
-        </div>
-        <div class="faq-item faq-item--hide">
-          <div class='faq-item__number'>
-            Q2:
-          </div>
-          <div class="faq-item__content">
-            <h2>如何辦理退貨</h2>
-            <p>線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～</p>
-          </div>
-        </div>
-        <div class="faq-item faq-item--hide">
-          <div class='faq-item__number'>
-            Q3:
-          </div>
-          <div class="faq-item__content">
-            <h2>如何辦理退貨</h2>
-            <p>線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～</p>
-          </div>
-        </div>
-        <div class="faq-item faq-item--hide">
-          <div class='faq-item__number'>
-            Q4:
-          </div>
-          <div class="faq-item__content">
-            <h2>如何辦理退貨</h2>
-            <p>線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～</p>
-          </div>
+        <div class="para para_hide">
+          線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
         </div>
       </div>
-
-
+      <div class="question_row">
+        <div class="quest_title">
+          <div class="title_num">Q2:</div>
+          <div class="title_content">目前提供哪些付款方式？</div>
+        </div>
+        <div class="para para_hide">
+          線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+        </div>
+      </div>
+      <div class="question_row">
+        <div class="quest_title">
+          <div class="title_num">Q3:</div>
+          <div class="title_content">線上刷卡如何操作呢？</div>
+        </div>
+        <div class="para para_hide">
+          線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+        </div>
+      </div>
+      <div class="question_row">
+        <div class="quest_title">
+          <div class="title_num">Q4:</div>
+          <div class="title_content">如何查詢目前訂單的處理情況？</div>
+        </div>
+        <div class="para para_hide">
+          線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+        </div>
+      </div>
+      <div class="question_row">
+        <div class="quest_title">
+          <div class="title_num">Q4:</div>
+          <div class="title_content">如何查詢目前訂單的處理情況？</div>
+        </div>
+        <div class="para para_hide">
+          線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+        </div>
+      </div>
+      <div class="question_row">
+        <div class="quest_title">
+          <div class="title_num">Q4:</div>
+          <div class="title_content">如何查詢目前訂單的處理情況？</div>
+        </div>
+        <div class="para para_hide">
+          線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+        </div>
+      </div>
+      <div class="question_row">
+        <div class="quest_title">
+          <div class="title_num">Q5:</div>
+          <div class="title_content">如何查詢目前訂單的處理情況？</div>
+        </div>
+        <div class="para para_hide">
+          線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+        </div>
+      </div>
+      <div class="question_row">
+        <div class="quest_title">
+          <div class="title_num">Q6:</div>
+          <div class="title_content">如何查詢目前訂單的處理情況？</div>
+        </div>
+        <div class="para para_hide">
+          線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+        </div>
+      </div>
+      <div class="question_row">
+        <div class="quest_title">
+          <div class="title_num">Q7:</div>
+          <div class="title_content">如何查詢目前訂單的處理情況？</div>
+        </div>
+        <div class="para para_hide">
+          線上刷卡的使用方式也超簡單，只要您確認您當次的購物清單與金額都無誤，就可立即到匯款上傳系統，登入個人帳號密碼後，點選"線上刷卡方式"，確認收件住址後，再進行刷卡確認程序即可～
+        </div>
+      </div>
     </section>
-  </div>
 
   <footer>
     <div class="footer__top">
@@ -430,31 +456,20 @@
     </div>
   </footer>
   <script>
-      document
-        .querySelector('.faq-block')
-        .addEventListener('click', function(e) {
-          const element = closest(e.target, 'faq-item')
-          if (element) {
-            element.classList.toggle('faq-item--hide')
-          }
-        })
-
-      function closestRecursive(node, className) {
-        if (!node || !node.classList) return null
-        if(node.classList.contains(className)) {
-          return node
+    const elements = document.querySelectorAll('.quest_title')
+    const paras = document.querySelectorAll('.para')
+    let isOpen = true
+    for(let i = 0; i < elements.length; i++) {
+      elements[i].addEventListener('click', function () {
+        if(isOpen) {
+          paras[i].classList.remove('para_hide')
+          isOpen = false
+        } else {
+          paras[i].classList.add('para_hide')
+          isOpen = true
         }
-        return closestRecursive(node.parentNode, className)
-      }
-
-      function closest(node, className) {
-        while(node && node.classList) {
-          if (node.classList.contains(className)) {
-            return node
-          }
-          node = node.parentNode
-        }
-      }      
+      });
+    }
   </script>
 </body>
 </html>
