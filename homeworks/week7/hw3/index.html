@@ -178,7 +178,8 @@
                 <div class="del_btn">X</div>
                 <div class="del-line hide"></div>
             `
-            document.querySelector(".item_list").appendChild(div)
+            document.querySelector(".item_list").appendChild(div);
+            document.getElementById('input_name').value = ''
             const elements = document.querySelectorAll('.todo_item')
             const checkboxs = document.querySelectorAll('input[name=checkbox]')
             const del_btn = document.querySelectorAll('.del_btn')
