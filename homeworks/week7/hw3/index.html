@@ -160,9 +160,15 @@
             e.preventDefault
             addfunction()
         }, false);
+        window.addEventListener('keydown', function(e){
+            if (e.code === 'Enter') {
+                document.querySelector('.addbtn').style.background = '#FF3D4A'
+            }
+        }, false);
         window.addEventListener('keyup', function(e){
             if (e.code === 'Enter') {
                 addfunction()
+                document.querySelector('.addbtn').style.background = 'white'
             }
         }, false);
 
@@ -173,7 +179,7 @@
             div.classList.add('todo_item')
             div.innerHTML = `
             <label>
-                    <input type="checkbox" name="checkbox" value="2">  ${text.value}
+                    <input type="checkbox" name="checkbox">  ${text.value}
                 </label>
                 <div class="del_btn">X</div>
                 <div class="del-line hide"></div>
