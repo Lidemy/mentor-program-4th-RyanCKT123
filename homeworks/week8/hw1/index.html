@@ -399,19 +399,6 @@
       }
       
       
-        const request = new XMLHttpRequest()
-        request.addEventListener('load', function() {
-            if (request.status >= 200 && request.status < 400) {
-                const result = JSON.parse(request.responseText);
-            } else {
-                alert(errorMessage)
-            }
-        })
-        request.onerror = function() {
-            console.log('error')
-        }
-        request.open('GET', apiUrl)
-        request.send()
         
         function getPrize(cb) {
         let xhr = new XMLHttpRequest()

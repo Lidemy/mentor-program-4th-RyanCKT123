@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twich API</title>
+    <style>
+        .navbar{
+          box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+          padding: 0px 20px;
+      }
+
+      .navbar .wrapper {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: white;
+          height: 84px;
+          /* border: 1px solid #000; */
+      }
+
+      .navbar_sitename{
+          color: black;
+          font-size: 36px;
+      }
+
+      .navbar_list{
+          list-style: none;
+          margin: 0px;
+          padding: 0px;
+          display: flex;
+          font-size: 18px;
+      }
+      
+      .navbar_list li {
+          margin-left: 12px;
+          padding: 12px 24px;
+          cursor: pointer;
+          border-radius: 8px;
+          transition: background 0.2s ease-in;
+      }
+
+      .navbar_list li.active, .navbar_list li:hover{
+          background: #ff7286;   
+      }
+
+      .navbar_list li:hover a{
+          color: white;
+      }
+
+      .navbar_list li a{
+          text-decoration: none;
+      }
+
+      
+    </style>
+</head>
+<body>
+    <nav class='navbar'>
+        <div class='wrapper'>
+            <div class="navbar_sitename">
+                Twitch Top Games
+            </div>
+            <ul class='navbar_list'>
+                <li><a herf="#">抽個大獎</a></li>
+                <li><a herf="#">我要點餐</a></li>
+                <li><a herf="#">查詢訂單</a></li>
+                <li><a herf="#">常見問題</a></li>
+                <li><a herf="#">常見問題</a></li>
+            </ul>
+        </div>
+      </nav>
+    
+    
+    <script>
+        const clientID = 'rnlfn3zp206qq18fb8nrncvjqcq0uv'
+        const acceptType = 'application/vnd.twitchtv.v5+json'
+        const GetStringUrl = 'https://api.twitch.tv/kraken/streams/?limit=5'
+        const GetTopUrl = 'https://api.twitch.tv/kraken/games/top/?limit=5'
+        
+        const request = new XMLHttpRequest()
+        request.addEventListener('load', function() {
+            if (request.status >= 200 && request.status < 400) {
+                const result = JSON.parse(request.responseText)
+                console.log(result.top)
+                for (let i = 0; i < result.top.length; i++) {
+                    document.querySelector('.navbar_list').createElement('<li>')
+                }
+            } else {
+                alert(errorMessage)
+            }
+        })
+        request.onerror = function() {
+            console.log('error')
+        }
+        request.open('GET' ,GetTopUrl)
+        request.setRequestHeader('Client-ID', clientID)
+        request.setRequestHeader('Accept', acceptType)
+        request.send()
+        
+        
+
+    </script>
+</body>
+</html>
