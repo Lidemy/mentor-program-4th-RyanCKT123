@@ -9,6 +9,10 @@
             padding: 0;
             margin: 0;
         }
+        
+        .wrapper {
+            background: linear-gradient(221deg, rgba(0, 0, 0, 0.8) 0%, rgba(201, 140, 253, 0.2) 84%);
+        }
 
         .navbar{
           box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
@@ -58,31 +62,51 @@
       }
 
       .container {
-          /* border: 1px solid #000; */
-          text-align: center;
-          padding: 20px 100px;
+        display : inline-flex;
+        flex-wrap : wrap;
+        justify-content : center;
       }
 
-      .container h3 {
+
+      .title {
+        padding: 20px 100px;
+      }
+
+      .title h3 {
           margin-top: 10px;
+          width: 100%;
+          text-align: center;
+      }
+
+      .title h2 {
+          text-align: center;
+          width: 100%;
       }
 
       .block {
-          background-image: url('https://static-cdn.jtvnw.net/previews-ttv/live_user_benjyfishy-320x180.jpg');
-          position: relative;
           display: inline-block;
-          width: 30%;
+          position: relative;
+          width: 25%;
           height: 250px;
           margin-top: 20px;
-
+          margin: 10px;
       }
+
 
       .info {
           position: absolute;
-          bottom: 0;
-          width: 100%;
+          bottom: 0px;
+          left: 0px;
           height: 30%;
+          width: 100%;
           background-color: rgb(63, 61, 61);
+      }
+
+      .bgc {
+        width: 100%;
+        height: 100%;
+        box-sizing: content-box;
+        object-fit:cover;
       }
 
       .info img {
@@ -102,6 +126,9 @@
         color: blanchedalmond;  
       }
       .channel .ch_Name {
+        overflow : hidden;
+        padding-right: 5px;
+        height: 20px;
         text-align: left;
         font-size: 16px;
       }
@@ -154,36 +181,11 @@
         </div>
     </nav>
     <section class="wrapper">
-        <div class="container">
+        <div class="title">
             <h2>Fortnite</h2>
             <h3>Top 20 popular live streams sorted by current viewers</h3>
-            <div class="block">
-                <div class="info">
-                    <img src = 'https://static-cdn.jtvnw.net/jtv_user_pictures/faf0f9e0-1d1a-4f41-b67f-e01ace642e76-profile_image-300x300.png'>
-                    <div class="channel">
-                        <div class="ch_Name">sdjfisdof fsdoijfiosdf fdsijfodsf</div>
-                        <div class="ch_streamer">c122x12</div>
-                    </div>
-                </div>
-            </div>
-            <div class="block">
-                <div class="info">
-                    <img src = 'https://static-cdn.jtvnw.net/jtv_user_pictures/faf0f9e0-1d1a-4f41-b67f-e01ace642e76-profile_image-300x300.png'>
-                    <div class="channel">
-                        <div class="ch_Name">sdjfisdof fsdoijfiosdf fdsijfodsf</div>
-                        <div class="ch_streamer">c122x12</div>
-                    </div>
-                </div>
-            </div>
-            <div class="block">
-                <div class="info">
-                    <img src = 'https://static-cdn.jtvnw.net/jtv_user_pictures/faf0f9e0-1d1a-4f41-b67f-e01ace642e76-profile_image-300x300.png'>
-                    <div class="channel">
-                        <div class="ch_Name">sdjfisdof fsdoijfiosdf fdsijfodsf</div>
-                        <div class="ch_streamer">c122x12</div>
-                    </div>
-                </div>
-            </div>
+        </div>
+        <div class="container">
         </div>
     </section>
     
@@ -244,6 +246,12 @@
                     for (let i = 0; i < check_btn.length; i++) {
                         check_btn[i].addEventListener("click", function() {
                             let gameName = check_btn[i].innerText
+                            let blocks = document.querySelectorAll('.block')
+                            if (blocks) {
+                                for (let i = 0; i < blocks.length; i++) {
+                                    blocks[i].remove('.block');
+                                }
+                            }
                             GetStream(gameName)
                         });
                     }
@@ -260,15 +268,26 @@
                     console.log(result)
                     for (let i = 0; i < result.streams.length; i++) {
                         let div = document.createElement('div')
+                        div.classList.add('block')
                         let desc = result.streams[i].channel.status
-                        let channelID = result.streams[i].display_name
-                        let logoUrl = result.streams[i].channel.profile_banner
+                        let channelID = result.streams[i].channel.display_name
+                        let logoUrl = result.streams[i].channel.logo
                         let previewUrl = result.streams[i].preview.medium
-                        console.log(desc)
-                        // li.innerHTML = `
-                        //     <a herf="#">${text}</a>
-                        // `
-                        // document.querySelector('.navbar_list').appendChild(li)
+                        console.log(previewUrl)
+                        div.innerHTML = `
+                            <img class='bgc' src = ${previewUrl}> 
+                            <div class="info">
+                                <img src = ${logoUrl}>
+                                <div class="channel">
+                                    <div class="ch_Name">${desc}</div>
+                                    <div class="ch_streamer">${channelID}</div>
+                                </div>
+                            </div>
+                        `
+                        document.querySelector('.container').appendChild(div)
+                        // let bolck = document.querySelectorAll('.block')
+                        // console.log(bolck[i])
+                        // block[i].style.backgroundImage = `url(${previewUrl})`;
                     }
                 } else {
                     alert(errorMessage)
@@ -281,20 +300,6 @@
             request.setRequestHeader('Client-ID', clientID)
             request.setRequestHeader('Accept', acceptType)
             request.send()
-        }
-
-
-
-        const check_btn = document.querySelectorAll('.list_btn')
-        if (check_btn) {
-            for (let i = 0; i < check_btn.length; i++) {
-                console.log(i)
-                check_btn[i].addEventListener("click", function() {
-                    let gameName = check_btn[i].innerText
-                    console.log(gameName)
-                    GetStream(gameName)
-                });
-            }
         }
 
     </script>
