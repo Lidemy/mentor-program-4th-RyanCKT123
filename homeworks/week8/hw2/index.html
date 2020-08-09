@@ -5,12 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Twich API</title>
     <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
         .navbar{
           box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
           padding: 0px 20px;
-      }
+        }
 
-      .navbar .wrapper {
+        .navbar .wrapper {
           display: flex;
           justify-content: space-between;
           align-items: center;
@@ -21,7 +26,7 @@
 
       .navbar_sitename{
           color: black;
-          font-size: 36px;
+          font-size: 30px;
       }
 
       .navbar_list{
@@ -29,19 +34,19 @@
           margin: 0px;
           padding: 0px;
           display: flex;
-          font-size: 18px;
+          font-size: 16px;
       }
       
       .navbar_list li {
-          margin-left: 12px;
-          padding: 12px 24px;
+          margin-left: 5px;
+          padding: 12px 12px;
           cursor: pointer;
           border-radius: 8px;
           transition: background 0.2s ease-in;
       }
 
-      .navbar_list li.active, .navbar_list li:hover{
-          background: #ff7286;   
+      .navbar_list li:hover{
+          background:black;   
       }
 
       .navbar_list li:hover a{
@@ -52,6 +57,89 @@
           text-decoration: none;
       }
 
+      .container {
+          /* border: 1px solid #000; */
+          text-align: center;
+          padding: 20px 100px;
+      }
+
+      .container h3 {
+          margin-top: 10px;
+      }
+
+      .block {
+          background-image: url('https://static-cdn.jtvnw.net/previews-ttv/live_user_benjyfishy-320x180.jpg');
+          position: relative;
+          display: inline-block;
+          width: 30%;
+          height: 250px;
+          margin-top: 20px;
+
+      }
+
+      .info {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          height: 30%;
+          background-color: rgb(63, 61, 61);
+      }
+
+      .info img {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-radius: 50%;
+        width: 20%;
+        padding: 8px;
+      }
+
+      .channel {
+        width: 70%;
+        position: absolute;
+        left: 30%;
+        padding: 5px 0px 5px 0px;
+        color: blanchedalmond;  
+      }
+      .channel .ch_Name {
+        text-align: left;
+        font-size: 16px;
+      }
+
+      .channel .ch_streamer {
+        text-align: left;
+        font-size: 12px;
+      }
+
+      
+
+
+
+      
+      @media(max-width: 768px) {
+        .navbar .wrapper {
+            flex-direction: column;
+            height: 120px;
+            justify-content: space-between;
+            padding: 0px;
+        }
+
+        .navbar_sitename{
+            margin-top: 10px;
+        }
+
+        .navbar_list{
+            display: flex;
+            width: 100%;
+        }
+
+        .navbar_list li{
+            flex: 1;
+            margin-left: 0;
+            border-radius: 0;
+            text-align: center;
+        }
+      }
       
     </style>
 </head>
@@ -62,43 +150,152 @@
                 Twitch Top Games
             </div>
             <ul class='navbar_list'>
-                <li><a herf="#">抽個大獎</a></li>
-                <li><a herf="#">我要點餐</a></li>
-                <li><a herf="#">查詢訂單</a></li>
-                <li><a herf="#">常見問題</a></li>
-                <li><a herf="#">常見問題</a></li>
             </ul>
         </div>
-      </nav>
+    </nav>
+    <section class="wrapper">
+        <div class="container">
+            <h2>Fortnite</h2>
+            <h3>Top 20 popular live streams sorted by current viewers</h3>
+            <div class="block">
+                <div class="info">
+                    <img src = 'https://static-cdn.jtvnw.net/jtv_user_pictures/faf0f9e0-1d1a-4f41-b67f-e01ace642e76-profile_image-300x300.png'>
+                    <div class="channel">
+                        <div class="ch_Name">sdjfisdof fsdoijfiosdf fdsijfodsf</div>
+                        <div class="ch_streamer">c122x12</div>
+                    </div>
+                </div>
+            </div>
+            <div class="block">
+                <div class="info">
+                    <img src = 'https://static-cdn.jtvnw.net/jtv_user_pictures/faf0f9e0-1d1a-4f41-b67f-e01ace642e76-profile_image-300x300.png'>
+                    <div class="channel">
+                        <div class="ch_Name">sdjfisdof fsdoijfiosdf fdsijfodsf</div>
+                        <div class="ch_streamer">c122x12</div>
+                    </div>
+                </div>
+            </div>
+            <div class="block">
+                <div class="info">
+                    <img src = 'https://static-cdn.jtvnw.net/jtv_user_pictures/faf0f9e0-1d1a-4f41-b67f-e01ace642e76-profile_image-300x300.png'>
+                    <div class="channel">
+                        <div class="ch_Name">sdjfisdof fsdoijfiosdf fdsijfodsf</div>
+                        <div class="ch_streamer">c122x12</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
     
     <script>
         const clientID = 'rnlfn3zp206qq18fb8nrncvjqcq0uv'
         const acceptType = 'application/vnd.twitchtv.v5+json'
-        const GetStringUrl = 'https://api.twitch.tv/kraken/streams/?limit=5'
+        const GetStreamUrl = 'https://api.twitch.tv/kraken/streams'
         const GetTopUrl = 'https://api.twitch.tv/kraken/games/top/?limit=5'
-        
-        const request = new XMLHttpRequest()
-        request.addEventListener('load', function() {
-            if (request.status >= 200 && request.status < 400) {
-                const result = JSON.parse(request.responseText)
-                console.log(result.top)
-                for (let i = 0; i < result.top.length; i++) {
-                    document.querySelector('.navbar_list').createElement('<li>')
+        // const li = document.createElement('li')
+
+        function getTopgame(cb) {
+            const request = new XMLHttpRequest()
+            request.onload = function() {
+                if (request.status >= 200 && request.status < 400) {
+                    let result
+                    try {
+                        result = JSON.parse(request.responseText)
+                    } catch(err) {
+                        cb(errorMessage)
+                        return
                 }
-            } else {
-                alert(errorMessage)
+                if (!result.top) {
+                    cb(errorMessage)
+                    return
+                }
+                cb(null, result)
+                } else {
+                cb(errorMessage)
+                }
             }
-        })
-        request.onerror = function() {
-            console.log('error')
+            request.onerror = function() {
+                console.log('error')
+            }
+            request.open('GET' ,GetTopUrl)
+            request.setRequestHeader('Client-ID', clientID)
+            request.setRequestHeader('Accept', acceptType)
+            request.send()
         }
-        request.open('GET' ,GetTopUrl)
-        request.setRequestHeader('Client-ID', clientID)
-        request.setRequestHeader('Accept', acceptType)
-        request.send()
-        
-        
+  
+
+        getTopgame(function(err, result) {
+                if (err) {
+                    alert(err)
+                return
+                }
+                for (let i = 0; i < result.top.length; i++) {
+                    let li = document.createElement('li')
+                    let text = result.top[i].game.name
+                    // console.log(text)
+                    li.innerHTML = `
+                        <a herf="#" class='list_btn'>${text}</a>
+                    `
+                    document.querySelector('.navbar_list').appendChild(li)
+                }
+                const check_btn = document.querySelectorAll('.list_btn')
+                if (check_btn) {
+                    for (let i = 0; i < check_btn.length; i++) {
+                        check_btn[i].addEventListener("click", function() {
+                            let gameName = check_btn[i].innerText
+                            GetStream(gameName)
+                        });
+                    }
+                }
+            })
+
+
+        function GetStream(gameName) {
+            const request = new XMLHttpRequest()
+            const limit = 20
+            request.addEventListener('load', function() {
+                if (request.status >= 200 && request.status < 400) {
+                    const result = JSON.parse(request.responseText)
+                    console.log(result)
+                    for (let i = 0; i < result.streams.length; i++) {
+                        let div = document.createElement('div')
+                        let desc = result.streams[i].channel.status
+                        let channelID = result.streams[i].display_name
+                        let logoUrl = result.streams[i].channel.profile_banner
+                        let previewUrl = result.streams[i].preview.medium
+                        console.log(desc)
+                        // li.innerHTML = `
+                        //     <a herf="#">${text}</a>
+                        // `
+                        // document.querySelector('.navbar_list').appendChild(li)
+                    }
+                } else {
+                    alert(errorMessage)
+                }
+            })
+            request.onerror = function() {
+                console.log('error')
+            }
+            request.open('GET' ,GetStreamUrl + `/?game=${gameName}&limit=${limit}`)
+            request.setRequestHeader('Client-ID', clientID)
+            request.setRequestHeader('Accept', acceptType)
+            request.send()
+        }
+
+
+
+        const check_btn = document.querySelectorAll('.list_btn')
+        if (check_btn) {
+            for (let i = 0; i < check_btn.length; i++) {
+                console.log(i)
+                check_btn[i].addEventListener("click", function() {
+                    let gameName = check_btn[i].innerText
+                    console.log(gameName)
+                    GetStream(gameName)
+                });
+            }
+        }
 
     </script>
 </body>
