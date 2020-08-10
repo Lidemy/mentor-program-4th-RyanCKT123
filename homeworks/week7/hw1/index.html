@@ -3,400 +3,288 @@
 <html>
 <head>
   <meta charset="utf-8">
-
-  <title>Office Website of Resturant</title>
+  <title>Lazy - Form</title>
   <meta name=”viewport” content=”width=device-width, initial-scale=1.0″>
   <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"/>
   <style>
-      h2 {
-          margin: 0;
-      }
-
-      .navbar{
-          box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
-          padding: 0px 20px;
-      }
-
-      .navbar .wrapper {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          background: white;
-          height: 84px;
-          /* border: 1px solid #000; */
-      }
-
-      .navbar_sitename{
-          color: #489846;
-          font-size: 36px;
-      }
-
-      .navbar_list{
-          list-style: none;
-          margin: 0px;
-          padding: 0px;
-          display: flex;
-          font-size: 18px;
-      }
-      
-      .navbar_list li {
-          margin-left: 12px;
-          padding: 12px 24px;
-          cursor: pointer;
-          border-radius: 8px;
-          transition: background 0.2s ease-in;
-      }
-
-      .navbar_list li.active, .navbar_list li:hover{
-          background: #ff7286;   
-      }
-
-      .navbar_list li.active a,
-      .navbar_list li:hover a{
-          color: white;
-      }
-
-      .navbar_list li a{
-          text-decoration: none;
+      .container {
+        position:relative;  
+        width:100%;
+        height: 1400px;;
       }
 
       .wrapper {
-          max-width: 1280px;
-          margin: 0 auto;
-          padding: 0px 12px;
+          width: 645px;
+          padding: 0px 0px;
+          margin-top: 129px;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);;
       }
 
-      .banner {
+      .bar {
+          width: 100%;
+          height: 8px;
+          background-color: #fad312;
           position: relative;
-          background: url(bg.png) center/cover no-repeat;
-          height: 580px;
+          top: 0;
       }
 
-      .banner:after {
-          content: '';
-          position: absolute;
-          background: rgba(0, 0, 0, 0.5);
-          top: 0px;
-          left: 0px;
-          right: 0px;
-          bottom: 0px;
+      .content {
+          padding-left: 42px;
+      }
+
+      .title {
+          margin-top: 54px;
+          text-align: left;
+          letter-spacing: -1.8px;
+          font-size: 36px;
+      }
+
+      .date {
+          margin-top: 35px;
+          text-align: left;
+          font-size: 14px;
+      }
+      
+      .location {
+          margin-top: 11px;
+          text-align: left;
+          font-size: 14px;
+      }
+
+      .alarm {
+          margin-top: 22px;
+          margin-bottom: 55px;
+          text-align: left;
+          font-size: 16px;
+          color: #e74149;
+      }
+
+      .form + .form{
+          margin-top: 49px;
+      }
+
+      .form .item {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      
+
+      .required .item:after {
+        content: '*';
+        color: #e74149;
+        margin-left: 5px;
+      }
+
+      .form .blank {
+        color: black;
+        font-size: 16px;
+        width: 287px;
+        height: 23px;
+        border-color: #d0d0d0;
+      }
+
+      .form .signtype {
+        margin-top: 49px;
+      }
+
+      .signtype .item {
+        font-size: 20px;
+        margin-bottom: 24px;
+      }
+
+      .signtype .type {
+        font-size: 14px;
+        margin-bottom: 23px;
+      }
+
+      .signtype label {
+        display: block;
+        margin-top: 12px;
+      }
+
+      .downpart {
+        margin-top: 50px;
+      }
+
+      .otherform {
+          margin-top: 51px;
+      }
+
+      .otherform .item {
+          font-size: 20px;
+      }
+
+      .otherform .other {
+        margin-top: 12px;
+        font-size: 14px;
+      }
+
+      .otherform .blank {
+        margin-top: 24px;
+        color: black;
+        font-size: 16px;
+        width: 287px;
+        height: 23px;
+        border-color: #d0d0d0;
       }
 
 
 
-      .banner h1 {
+      .btn {
+        background-color: #fad312;
+        border: 1px solid #fad312;
+        border-radius: 3px;
+        width: 92px;
+        height: 40px;
+        font-size: 15px;
+        margin-top: 55px;
+      }
+
+      .remarks {
+        margin-top: 21px;
+        font-size: 14px;
+        margin-bottom: 35px;
+      }
+
+      .footer {
+          position:absolute;
+          width: 100%;
+          height: 60px;
+          background-color: black;
+          bottom:0px;
+          left:0px;
+      }
+
+      .footer p {
           display: inline-block;
-          margin: 0px;
-          color: white;
-          position: absolute;
-          z-index: 3;
+          position: relative;
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          font-size: 60px;
-          font-weight: bold;
-      }
-
-      .section {
-          margin-top: 80px;
-          text-align: center;
-      }
-
-      .section .section_title {
-          display: inline-block;
-          font-size: 36px;
-          border-left: 15px solid #a3dea2;
-          padding-left: 16px;
-          margin-bottom: 36px;
-      }
-
-      .section_para {
-          font-size: 16px;
-          line-height: 2em;
-          margin: 0px 0px 68px 0px;
-      }
-
-      .button {
-          padding: 60px 80px;
-          font-size: 36px;
-          color: #3e613d;
-          display: inline-block;
-          border-radius: 10px;
-          cursor: pointer;
-          transition: 0.2s;
-      }
-
-      .button:hover {
-          transform: scale(1.1);
-      }
-
-      .btn_order {
-          background: #a8e8e1;
-      }
-
-      .btn_query {
-          margin-left: 23px;
-          background: #f9f9b5;
-      }
-
-      .section_photos {
-          display: flex;
-      }
-
-      .section_photos .section_photo {
-          width: 25%;
-      }
-
-      .section_photos img {
-          width: 100%;
-      }
-
-      .section_comments {
-          display: flex;
-          margin-top: 60px;
-      }
-
-      .section_comments .section_comment {
-          border: 1px solid #c7e5ec;
-          box-shadow: -1.4px -1.4px 4px 0 #d8eaef;
-          width: 33.3%;
-          height: 205px;
-          position: relative;
-      }
-
-      .section_comment + .section_comment {
-          margin-left: 16px;
-      }
-
-
-      .section_comments .section_comment .commenter {
-          position: relative;
-          top: -54px;
-          left: 50%;
-          transform: translateX(-50%);
-          width: 105px;
-          height: 105px;
-      }
-
-      .section_comments .section_comment .comment_content {
-          line-height: 1.5em;
-          letter-spacing: 0.14;
-          text-align: center;
-          margin-top: -20px;
-          padding: 0px 20px 39px 20px;
-      }
-
-      .section_comments .section_comment .comment_name {
-          letter-spacing: 0.14px;
-          position: absolute;
-          top: 56px;
-          left: 50%;
-          transform: translateX(-50%);
-      }
-
-      footer {
-          margin-top: 48px;
-      }
-
-      .footer_top {
-          font-size: 14px;
-          text-align: left;
-          line-height: 2em;
-          background-color: #e8efee;
-          padding: 32px;
-      }
-
-      .footer_top .wrapper {
-          display: flex;
-          justify-content: space-between;
-      }
-
-      .footer_info div + div {
-          margin-top: 10px;
-      }
-
-      .footer_info {
-          margin-right: 16px;
-      }
-
-      .footer_site {
-          font-size: 36px;
-          color: #489846;
-      }
-
-      .footer_bottom {
-          font-size: 16px;
-          text-align: center;
-          padding: 12px 0px;
+          margin: 0;
           color: white;
-          background-color: #35564b;
-          padding: 12px;
+          font-size: 13px;
       }
 
-    @media(max-width: 768px) {
-      .navbar .wrapper {
-          flex-direction: column;
-          height: 120px;
-          justify-content: space-between;
-          padding: 0px;
+      .input-block_error{
+          color: #e74149;
+          margin-top: 4px;
+          position: absolute;
       }
 
-      .navbar_sitename{
-          margin-top: 10px;
+      .hide-error .input-block_error {
+        visibility: hidden;
       }
-
-      .navbar_list{
-          display: flex;
-          width: 100%;
-      }
-
-      .navbar_list li{
-          flex: 1;
-          margin-left: 0;
-          border-radius: 0;
-          text-align: center;
-      }
-
-      .btn_query {
-          margin-left: 0px;
-          margin-top: 16px;;
-      }
-
-      .section_photos {
-          display: flex;
-          flex-direction: column;
-      }
-
-      .section_photos .section_photo {
-          width: 100%;
-      }
-
-      .section_comments {
-          flex-direction: column;
-      }
-
-      .section_comment + .section_comment {
-          margin-left: 0px;
-          margin-top: 82px;
-      }
-
-      .section_comments .section_comment {
-          width: 100%;
-          height: 100%;
-          border: 1px solid #c7e5ec;
-          box-shadow: -1.4px -1.4px 4px 0 #d8eaef;
-          position: relative;
-      }
-      
-      .footer_top .wrapper {
-          flex-direction: column-reverse;
-      }
-
-      .footer_info {
-          margin-right: 0;
-          margin-top: 16px;
-      }
-    }
-
   </style>
 
 </head>
 
 <body>
-  <nav class='navbar'>
-    <div class='wrapper'>
-        <div class="navbar_sitename">
-            JUST A Bite!
-        </div>
-        <ul class='navbar_list'>
-            <li class='active'><a herf="#">抽個大獎</a></li>
-            <li><a herf="#">我要點餐</a></li>
-            <li><a herf="#">查詢訂單</a></li>
-            <li><a herf="#">常見問題</a></li>
-        </ul>
-    </div>
-  </nav>
-    <section class="banner">
-      <h1>咬一口廚房</h1>
-    </section>
-    <section class="section">
-        <h2 class="section_title">
-            當輕食之風盛起
-        </h2>
-        <p class="section_para">
-            由於現代人生活忙碌，常以外食為主，當高糖、高鹽、高油成為人們的日常，會導致慢性疾病與肥胖的機率大增。
-            <br>
-            我們定期走訪農田，選用最天然、營養的食材，以簡單的烹調方式處理，最大化忠實呈現食材原本的鮮味。
-            <br>
-            咬一口不只賣餐點，我們希望能夠讓大家愛上料理的魅力，餐館特意打造全開放式廚房，烹調透明化，也不定時舉辦美食廚房DIY，讓大家體驗不需要過多調味，就能擁有千變萬化的食物口感。
-        </p>
-        <div class="buttons">
-            <div class="button btn_order">
-                我要點餐
-            </div>
-            <div class="button btn_query">
-                查詢訂單
-            </div>
-    </section>
-    <section class="section">
-        <h2 class="section_title">
-            Meun 搶先看
-        </h2>
-        <div class="section_photos">
-            <div class="section_photo"><img src="f-001.png" /></div>
-            <div class="section_photo"><img src="f-002.png" /></div>
-            <div class="section_photo"><img src="f-003.png" /></div>
-            <div class="section_photo"><img src="f-004.png" /></div>
-        </div>
-    </section>
-    <div class="wrapper">
-        <section class="section">
-            <h2 class="section_title">
-                吃過的說好
-            </h2>
-            <div class="section_comments">
-                <div class="section_comment">
-                    <div class="commenter"><img src="p-1.png" /></div>
-                    <div class="comment_name">國父桑</div>
-                    <div class="comment_content">我一生疲於建國，去過日本，去過歐洲，卻從未到過台北101，也從來沒有吃過這麼好吃的東西...今天在時空旅行者的幫助下我終於吃到了...此生再無遺憾 QAQ!!</div>
+    <div class="container">
+        <form class="wrapper">
+            <div class="bar"></div>
+            <div class="content">
+                <div class="title">
+                    新拖延運動報名表單
                 </div>
-                <div class="section_comment center">
-                    <div class="commenter"><img src="p-2.png" /></div>
-                    <div class="comment_name">可達鴨</div>
-                    <div class="comment_content">三雙鞋等於30，兩個人加一雙鞋等於20，一雙冰淇淋加一雙冰淇淋加一個人等於13，那$#%$#%^%$^##$%等於多少...唉，大概咬一口就知道了!!!
+                <div class="date">
+                    活動日期：2020/12/10 ~ 2020/12/11
+                </div>
+                <div class="location">
+                    活動地點：台北市大安區新生南路二段1號
+                </div>
+                <div class="alarm">
+                    *必填
+                </div>
+                <div class="form required hide-error">
+                    <div class="item">暱稱</div>
+                    <input class="blank" placeholder="您的回答" type="text" name="name"></input>
+                    <div class="input-block_error">請輸入暱稱</div>
+                </div>
+                <div class="form required hide-error">
+                    <div class="item">電子郵件</div>
+                    <input class="blank" placeholder="您的電子郵件" type="text" name="email"></input>
+                    <div class="input-block_error">請輸入電子郵件</div>
+                </div>
+                <div class="form required hide-error">
+                    <div class="item">手機號碼</div>
+                    <input class="blank" placeholder="您的手機號碼" type="text" name="phone"></input>
+                    <div class="input-block_error">請輸入手機號碼</div>
+                </div>
+                <div class="form signtype required hide-error">
+                    <div class="item">報名類型</div>
+                    <label>
+                        <input name="type" value="1" type="radio" /> 躺在床上用想像力實作
+                    </label>
+            
+                    <label>
+                        <input name="type" value="2" type="radio" />
+                         趴在地上滑手機找現成的
+                    </label>
+                    <div class="input-block_error">請輸入報名類型</div>
+                </div>
+                <div class="form downpart required hide-error">
+                    <div class="item">怎麼知道這個活動的？</div>
+                    <input class="blank req" placeholder="您的回答" type="text" name="how"></input>
+                    <div class="input-block_error">請輸入資料</div>
+                </div>
+                <div class="otherform">
+                    <div class="item">其他</div>
+                    <div class="other">對活動的一些建議
                     </div>
+                    <input class="blank" placeholder="您的回答" type="text" name="other"></input>
                 </div>
-                <div class="section_comment">
-                    <div class="commenter"><img src="p-3.png" /></div>
-                    <div class="comment_name">旅かえる旅行青蛙</div>
-                    <div class="comment_content">自從呱呱呱呱呱以後，我呱呱呱呱呱，非常感謝呱呱呱呱呱，下次呱呱呱呱呱我呱呱呱呱呱，一定呱呱呱呱呱!!!                    </div>
-                </div>
+                <button class="btn" type= "submit">提交</button>
+                <div class="remarks">請勿透過表單送出您的密碼。</div>
             </div>
-        </section>
-        <section class="section">
-            <h2 class="section_title">
-                我們在哪裡
-            </h2>
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3615.0028901837127!2d121.56235021489418!3d25.033975983972333!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3442abb6da9c9e1f%3A0x1206bcf082fd10a6!2zMTEw5Y-w5YyX5biC5L-h576p5Y2A5L-h576p6Lev5LqU5q61N-iZnw!5e0!3m2!1szh-TW!2stw!4v1595338131199!5m2!1szh-TW!2stw" width="100%" height="455" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-        </section>
-        <footer>
-            <div class="footer_top">
-                <div class="wrapper">
-                    <div class="footer_info">
-                        <div>餐館地址: 天上地下天堂路三分之一里六段520號</div>
-                        <div>訂位專線：02-1314-5566</div>
-                        <div>營業時間：週一〜週五 09:00~18:00 / 週六、週日、國定假日（含連假）休息</div>
-                        <div>email：service@justabite.com.tw</div>
-                    </div>
-                    <div>
-                        <div class="footer_site">Just A Bite</div>
-                        <div>Facebook / Instagram/ Youtube</div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer_bottom">Copyright © 2020 Just A Bite All Rights Reserved. 咬一口股份有限公司版權所有</div>
+          </form>
+        <footer class="footer">
+            <p>© 2020 © Copyright. All rights Reserved.</p>>
         </footer>
     </div>
-  </div>  
+    <script>
+      document.querySelector('form').addEventListener('submit', 
+        function(e) {
+          e.preventDefault()
+          let hasError = false
+          let values = {}
+          const elements = document.querySelectorAll('.required')
+          for(element of elements) {
+            const radios = element.querySelectorAll('input[type=radio]')
+            const input = element.querySelector('input[type=text]')
+            let isValid = true
+            if (input) {
+              values[input.name] = input.value
+              if (!input.value) {
+                isValid = false
+              }
+            } else if (radios.length) {
+              isValid = [...radios].some(radio => radio.checked)
+              if (isValid) {
+                let r = element.querySelector('input[type=radio]:checked')
+                values[r.name] = r.value
+              }
+            } else {
+              continue
+            }
+
+            if (!isValid) {
+              element.classList.remove('hide-error')
+              hasError = true
+            } else {
+              element.classList.add('hide-error')
+            }
+          }
+
+          if (!hasError) {
+            alert(JSON.stringify(values))
+          }
+        }
+      )
+    </script>
 </body>
 </html>
