@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="utf-8">
+
+  <title>Lazy - Form</title>
+  <meta name=”viewport” content=”width=device-width, initial-scale=1.0″>
+  <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.1/normalize.css"/>
+  <style>
+      .container {
+        position:relative;  
+        width:100%;
+        height: 1400px;;
+      }
+
+      .wrapper {
+          width: 645px;
+          padding: 0px 0px;
+          margin-top: 129px;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          box-shadow: 1.8px 2.4px 5px 0 rgba(0, 0, 0, 0.3);;
+      }
+
+      .bar {
+          width: 100%;
+          height: 8px;
+          background-color: #fad312;
+          position: relative;
+          top: 0;
+      }
+
+      .content {
+          padding-left: 42px;
+      }
+
+      .title {
+          margin-top: 54px;
+          text-align: left;
+          letter-spacing: -1.8px;
+          font-size: 36px;
+      }
+
+      .date {
+          margin-top: 35px;
+          text-align: left;
+          font-size: 14px;
+      }
+      
+      .location {
+          margin-top: 11px;
+          text-align: left;
+          font-size: 14px;
+      }
+
+      .alarm {
+          margin-top: 22px;
+          margin-bottom: 55px;
+          text-align: left;
+          font-size: 16px;
+          color: #e74149;
+      }
+
+      .form + .form{
+          margin-top: 49px;
+      }
+
+      .form .item {
+        font-size: 20px;
+        margin-bottom: 20px;
+      }
+
+      
+
+      .required:after {
+        content: '*';
+        color: #e74149;
+        margin-left: 5px;
+      }
+
+      .form .blank {
+        color: black;
+        font-size: 16px;
+        width: 287px;
+        height: 23px;
+        border-color: #d0d0d0;
+      }
+
+      .signtype {
+        margin-top: 49px;
+      }
+
+      .signtype .item {
+        font-size: 20px;
+        margin-bottom: 24px;
+      }
+
+      .signtype .type {
+        font-size: 14px;
+        margin-bottom: 23px;
+      }
+
+      .signtype label {
+        display: block;
+        margin-top: 12px;
+      }
+
+      .downpart {
+        margin-top: 50px;
+      }
+
+      .otherform {
+          margin-top: 51px;
+      }
+
+      .otherform .item {
+          font-size: 20px;
+      }
+
+      .otherform .other {
+        margin-top: 12px;
+        font-size: 14px;
+      }
+
+      .otherform .blank {
+        margin-top: 24px;
+        color: #afafaf;
+        font-size: 16px;
+        width: 287px;
+        height: 23px;
+        border-color: #d0d0d0;
+      }
+
+
+
+      .btn {
+        background-color: #fad312;
+        border: 1px solid #fad312;
+        border-radius: 3px;
+        width: 92px;
+        height: 40px;
+        font-size: 15px;
+        margin-top: 55px;
+      }
+
+      .remarks {
+        margin-top: 21px;
+        font-size: 14px;
+        margin-bottom: 35px;
+      }
+
+      .footer {
+          position:absolute;
+          width: 100%;
+          height: 60px;
+          background-color: black;
+          bottom:0px;
+          left:0px;
+      }
+
+      .footer p {
+          display: inline-block;
+          position: relative;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          margin: 0;
+          color: white;
+          font-size: 13px;
+      }
+
+ 
+
+
+        
+
+
+
+
+  </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="wrapper">
+            <div class="bar"></div>
+            <div class="content">
+                <div class="title">
+                    新拖延運動報名表單
+                </div>
+                <div class="date">
+                    活動日期：2020/12/10 ~ 2020/12/11
+                </div>
+                <div class="location">
+                    活動地點：台北市大安區新生南路二段1號
+                </div>
+                <div class="alarm">
+                    *必填
+                </div>
+                <div class="form">
+                    <div class="item required">暱稱</div>
+                    <input class="blank" placeholder="您的回答"></input>
+                </div>
+                <div class="form">
+                    <div class="item required">電子郵件</div>
+                    <input class="blank" placeholder="您的電子郵件"></input>
+                </div>
+                <div class="form">
+                    <div class="item required">手機號碼</div>
+                    <input class="blank" placeholder="您的手機號碼"></input>
+                </div>
+                <div class="signtype">
+                    <div class="item">報名類型</div>
+                    <label>
+                        <input name="type" value="1" type="radio" /> 躺在床上用想像力實作
+                      </label>
+            
+                      <label>
+                        <input name="type" value="2" type="radio" />
+                         趴在地上滑手機找現成的
+                      </label>
+                </div>
+                <div class="form downpart">
+                    <div class="item required">怎麼知道這個活動的？</div>
+                    <input class="blank" placeholder="您的回答"></input>
+                </div>
+                <div class="otherform">
+                    <div class="item">其他</div>
+                    <div class="other">對活動的一些建議
+                    </div>
+                    <input class="blank" placeholder="您的回答"></input>
+                </div>
+                <button class="btn">提交</button>
+                <div class="remarks">請勿透過表單送出您的密碼。</div>
+            </div>
+        </div>
+        <footer class="footer">
+            <p>© 2020 © Copyright. All rights Reserved.</p>>
+        </footer>
+    </div>
+</body>
+</html>
