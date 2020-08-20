@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Twich API</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .wrapper {
+            background: linear-gradient(221deg, rgba(0, 0, 0, 0.8) 0%, rgba(201, 140, 253, 0.2) 84%);
+        }
+
+        .navbar{
+          box-shadow: -1.4px -1.4px 6px 0 #97a2a0;
+          padding: 0px 20px;
+        }
+
+        .navbar .wrapper {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          background: white;
+          height: 84px;
+          /* border: 1px solid #000; */
+      }
+
+      .navbar_sitename{
+          color: black;
+          font-size: 30px;
+      }
+
+      .navbar_list{
+          list-style: none;
+          margin: 0px;
+          padding: 0px;
+          display: flex;
+          font-size: 16px;
+      }
+      
+      .navbar_list li {
+          margin-left: 5px;
+          padding: 12px 12px;
+          cursor: pointer;
+          border-radius: 8px;
+          transition: background 0.2s ease-in;
+      }
+
+      .navbar_list li:hover{
+          background:black;   
+      }
+
+      .navbar_list li:hover a{
+          color: white;
+      }
+
+      .navbar_list li a{
+          text-decoration: none;
+      }
+
+      .container {
+        display : inline-flex;
+        flex-wrap : wrap;
+        justify-content : center;
+      }
+
+
+      .title {
+        padding: 20px 100px;
+      }
+
+      .title h3 {
+          margin-top: 10px;
+          width: 100%;
+          text-align: center;
+      }
+
+      .title h2 {
+          text-align: center;
+          width: 100%;
+      }
+
+      .block {
+          display: inline-block;
+          position: relative;
+          width: 25%;
+          height: 250px;
+          margin-top: 20px;
+          margin: 10px;
+      }
+
+      .block:hover {
+          transform: scale(1.07);
+          filter: brightness(1.2);
+          box-shadow: 5px 5px 20px 5px rgba(0, 0, 0, 0.5);
+          opacity: 1;
+      }
+
+
+
+      .info {
+          position: absolute;
+          bottom: 0px;
+          left: 0px;
+          height: 30%;
+          width: 100%;
+          background-color: rgb(63, 61, 61);
+      }
+
+      .bgc {
+        width: 100%;
+        height: 100%;
+        box-sizing: content-box;
+        object-fit:cover;
+      }
+
+      .info img {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        border-radius: 50%;
+        width: 20%;
+        padding: 8px;
+      }
+
+      .channel {
+        width: 70%;
+        position: absolute;
+        left: 30%;
+        padding: 5px 0px 5px 0px;
+        color: blanchedalmond;  
+      }
+      .channel .ch_Name {
+        overflow : hidden;
+        padding-right: 5px;
+        height: 20px;
+        text-align: left;
+        font-size: 16px;
+      }
+
+      .channel .ch_streamer {
+        text-align: left;
+        font-size: 12px;
+      }
+
+      
+
+
+
+      
+    @media(max-width: 850px) {
+        .navbar .wrapper {
+            flex-direction: column;
+            height: 150px;
+            justify-content: space-between;
+            padding: 0px;
+        }
+
+        .navbar_sitename{
+            margin-top: 10px;
+        }
+
+        .navbar_list{
+            display: flex;
+            width: 100%;
+        }
+
+        .navbar_list li{
+            flex: 1;
+            padding: 0;
+            margin-left: 0;
+            border-radius: 0;
+            text-align: center;
+        }
+
+        .block {
+          display: inline-block;
+          position: relative;
+          width: 100%;
+          height: 250px;
+          margin-top: 20px;
+          margin: 10px;
+        }
+
+        .container {
+        display : inline-flex;
+        flex-wrap : wrap;
+        justify-content : center;
+        padding:0 10%;
+      }
+
+    }
+      
+    </style>
+</head>
+<body>
+    <nav class='navbar'>
+        <div class='wrapper'>
+            <div class="navbar_sitename">
+                Twitch Top Games
+            </div>
+            <ul class='navbar_list'>
+            </ul>
+        </div>
+    </nav>
+    <section class="wrapper">
+        <div class="title">
+            <h2>Fortnite</h2>
+            <h3>Top 20 popular live streams sorted by current viewers</h3>
+        </div>
+        <div class="container">
+        </div>
+    </section>
+    
+    
+    <script>
+        const clientID = 'rnlfn3zp206qq18fb8nrncvjqcq0uv'
+        const acceptType = 'application/vnd.twitchtv.v5+json'
+        const GetStreamUrl = 'https://api.twitch.tv/kraken/streams'
+        const GetTopUrl = 'https://api.twitch.tv/kraken/games/top/?limit=5'
+        // const li = document.createElement('li')
+
+        function getTopgame(cb) {
+            const request = new XMLHttpRequest()
+            request.onload = function() {
+                if (request.status >= 200 && request.status < 400) {
+                    let result
+                    try {
+                        result = JSON.parse(request.responseText)
+                    } catch(err) {
+                        cb(errorMessage)
+                        return
+                }
+                if (!result.top) {
+                    cb(errorMessage)
+                    return
+                }
+                cb(null, result)
+                } else {
+                cb(errorMessage)
+                }
+            }
+            request.onerror = function() {
+                console.log('error')
+            }
+            request.open('GET' ,GetTopUrl)
+            request.setRequestHeader('Client-ID', clientID)
+            request.setRequestHeader('Accept', acceptType)
+            request.send()
+        }
+  
+
+        getTopgame(function(err, result) {
+                if (err) {
+                    alert(err)
+                return
+                }
+                for (let i = 0; i < result.top.length; i++) {
+                    let li = document.createElement('li')
+                    let text = result.top[i].game.name
+                    // console.log(text)
+                    li.innerHTML = `
+                        <a herf="#" class='list_btn'>${text}</a>
+                    `
+                    document.querySelector('.navbar_list').appendChild(li)
+                }
+                const check_btn = document.querySelectorAll('.list_btn')
+                if (check_btn) {
+                    for (let i = 0; i < check_btn.length; i++) {
+                        check_btn[i].addEventListener("click", function() {
+                            let gameName = check_btn[i].innerText
+                            let blocks = document.querySelectorAll('.block')
+                            if (blocks) {
+                                for (let i = 0; i < blocks.length; i++) {
+                                    blocks[i].remove('.block');
+                                }
+                            }
+                            GetStream(gameName)
+                        });
+                    }
+                }
+            })
+
+
+        function GetStream(gameName) {
+            const request = new XMLHttpRequest()
+            const limit = 20
+            request.addEventListener('load', function() {
+                if (request.status >= 200 && request.status < 400) {
+                    const result = JSON.parse(request.responseText)
+                    console.log(result)
+                    for (let i = 0; i < result.streams.length; i++) {
+                        let div = document.createElement('div')
+                        div.classList.add('block')
+                        let desc = result.streams[i].channel.status
+                        let channelID = result.streams[i].channel.display_name
+                        let logoUrl = result.streams[i].channel.logo
+                        let previewUrl = result.streams[i].preview.medium
+                        console.log(previewUrl)
+                        div.innerHTML = `
+                            <img class='bgc' src = ${previewUrl}> 
+                            <div class="info">
+                                <img src = ${logoUrl}>
+                                <div class="channel">
+                                    <div class="ch_Name">${desc}</div>
+                                    <div class="ch_streamer">${channelID}</div>
+                                </div>
+                            </div>
+                        `
+                        document.querySelector('.container').appendChild(div)
+                        // let bolck = document.querySelectorAll('.block')
+                        // console.log(bolck[i])
+                        // block[i].style.backgroundImage = `url(${previewUrl})`;
+                    }
+                } else {
+                    alert(errorMessage)
+                }
+            })
+            request.onerror = function() {
+                console.log('error')
+            }
+            request.open('GET' ,GetStreamUrl + `/?game=${gameName}&limit=${limit}`)
+            request.setRequestHeader('Client-ID', clientID)
+            request.setRequestHeader('Accept', acceptType)
+            request.send()
+        }
+
+    </script>
+</body>
+</html>
