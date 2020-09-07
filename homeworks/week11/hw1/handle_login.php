@@ -28,11 +28,6 @@
   $row = $result->fetch_assoc();
   if (password_verify($password, $row['password'])) {
     //登入成功
-    /*
-      1. 產生 session id (token)
-      2. 把 username 寫入檔案
-      3. set-cookie: session-id
-    */
     $_SESSION['username'] = $username;
     header("Location: index.php");
   } else {
