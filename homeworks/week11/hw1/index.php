@@ -3,7 +3,15 @@
 	require_once("conn.php");
 	require_once("utils.php");
 
-	$stmt = $conn->prepare('select * from good_comments order by id desc');
+	// $stmt = $conn->prepare('select * from good_comments order by id desc');
+	$stmt = $conn->prepare(
+		'select '.
+		  'C.id as id, C.content as content, '.
+		  'C.creat_at as creat_at, U.nickname as nickname, U.username as username '.
+		'from good_comments as C ' .
+		'left join good_user as U on C.username = U.username '.
+		'order by C.id desc'
+	);
 	$result = $stmt->execute();
 	if (!$result) {
 		die('Error' . $conn->error);
@@ -83,6 +91,7 @@
 						<div class="card_info">
 							<span class="card_author">
 							<?php echo escape($row['nickname']); ?>
+							(@<?php echo escape($row['username']); ?>)
 							</span>
 							<span class="card_time">
 							<?php echo escape($row['creat_at']); ?>
