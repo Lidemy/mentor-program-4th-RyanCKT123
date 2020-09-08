@@ -7,7 +7,7 @@
     empty($_POST['username']) ||
     empty($_POST['password'])
   ) {
-    header('Location: register.php?errCode=1');
+    header('Location: login.php?errCode=1');
     die('資料不齊全');
   }
 

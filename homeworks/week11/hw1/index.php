@@ -60,6 +60,11 @@
 				</form>
 				<h3>Hello <?php echo $user['nickname'];?></h3>
 			<?php } ?>
+			<label class="form-switch">
+  				<input type="checkbox" name="checkbox">
+					<i></i>
+					Night Mode  
+			</label>
 		</div>
 		<h1 class="board_title">Comments</h1>
 		<?php
@@ -107,6 +112,22 @@
 		</section>
 	</main>
 	<script>
+		//Nightmode
+		const checkbox = document.querySelector( 'input[name=checkbox]')
+		const  board = document.querySelector('.board' )
+		checkbox.addEventListener('change', function( ){
+			let check = false
+            if (this.checked){
+				document.body.style.backgroundColor="#4F4F4F";
+                board.style.backgroundColor="black";
+				board.style.color="white";
+        	} else {
+				document.body.style.backgroundColor="#f7f7f7";
+				board.style.backgroundColor="white";
+				board.style.color="black";
+			}
+		})
+		//Nickname Edit
 		var btn = document.querySelector('.update-nickname')
 		btn.addEventListener('click', function() {
 			var form = document.querySelector('.board_nickname-form')
