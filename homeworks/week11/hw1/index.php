@@ -3,21 +3,6 @@
 	require_once("conn.php");
 	require_once("utils.php");
 
-	// $stmt = $conn->prepare('select * from good_comments order by id desc');
-	$stmt = $conn->prepare(
-		'select '.
-		'C.id as id, C.content as content, '.
-		'C.creat_at as creat_at, U.nickname as nickname, U.username as username '.
-		'from good_comments as C ' .
-		'left join good_user as U on C.username = U.username '.
-		'where C.is_deleted IS NULL '.
-		'order by C.id desc'
-	);
-	$result = $stmt->execute();
-	if (!$result) {
-		die('Error' . $conn->error);
-	}
-	$result = $stmt->get_result();
 	/*
     1. 從 cookie 裡面讀取 PHPSESSID(token)
     2. 從檔案裡面讀取 session id 的內容
@@ -29,6 +14,31 @@
 		$username = $_SESSION['username'];
 		$user = getUserFromUsername($username);
 	}
+
+	//分頁功能
+	$page = 1;
+	if (!empty($_GET['page'])) {
+		$page = intval($_GET['page']);
+	}
+	$items_per_page = 5;
+	$offset = ($page - 1) * $items_per_page;
+
+	$stmt = $conn->prepare(
+		'select '.
+			'C.id as id, C.content as content, '.
+			'C.creat_at as creat_at, U.nickname as nickname, U.username as username '.
+		'from good_comments as C ' .
+		'left join good_user as U on C.username = U.username '.
+		'where C.is_deleted IS NULL '.
+		'order by C.id desc '.
+		'limit ? offset ? '
+	);
+	$stmt->bind_param('ii', $items_per_page, $offset);
+	$result = $stmt->execute();
+	if (!$result) {
+		die('Error' . $conn->error);
+	}
+	$result = $stmt->get_result();
 ?>
 
 
@@ -47,8 +57,8 @@
 	<main class="board">
 		<div>
 			<?php if (!$username) { ?>
-				<a class="board_btn" href="register.php">註冊<a>
-				<a class="board_btn" href="login.php">登入<a>
+				<a class="board_btn" href="register.php">註冊</a>
+				<a class="board_btn" href="login.php">登入</a>
 			<?php } else { ?>
 				<a class="board_btn" href="logout.php">登出<a>
 				<span class="board_btn update-nickname">編輯暱稱</span>
@@ -112,6 +122,31 @@
 				</div>
 			<?php } ?>
 		</section>
+		<div class="board__hr"></div>
+		<?php
+			$stmt = $conn->prepare(
+			'select count(id) as count from good_comments where is_deleted IS NULL'
+			);
+			$result = $stmt->execute();
+			$result = $stmt->get_result();
+			$row = $result->fetch_assoc();
+			$count = $row['count'];
+			$total_page = ceil($count / $items_per_page);
+		?>
+		<div class="page-info">
+			<span>總共有 <?php echo $count ?> 筆留言，頁數：</span>
+			<span><?php echo $page ?> / <?php echo $total_page ?></span>
+		</div>
+		<div class="paginator">
+			<?php if ($page != 1) { ?>
+				<a href="index.php?page=1">首頁</a>
+				<a href="index.php?page=<?php echo $page - 1 ?>">上一頁</a>
+			<?php } ?>
+			<?php if ($page != $total_page) { ?>
+				<a href="index.php?page=<?php echo $page + 1 ?>">下一頁</a>
+				<a href="index.php?page=<?php echo $total_page ?>">最後一頁</a> 
+			<?php } ?>
+      	</div>  
 	</main>
 	<script>
 		//Nightmode
@@ -138,3 +173,12 @@
   	</script>
 </body>
 </html>
+<!-- 
+select C.id as id, 
+		C.content as content, 
+		C.creat_at as creat_at, U.nickname as nickname, U.username as username 
+		from good_comments as C  
+		left join good_user as U on C.username = U.username 
+		where C.is_deleted IS NULL 
+		order by C.id desc
+		limit 5 offset 0  -->
