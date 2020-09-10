@@ -6,10 +6,11 @@
 	// $stmt = $conn->prepare('select * from good_comments order by id desc');
 	$stmt = $conn->prepare(
 		'select '.
-		  'C.id as id, C.content as content, '.
-		  'C.creat_at as creat_at, U.nickname as nickname, U.username as username '.
+		'C.id as id, C.content as content, '.
+		'C.creat_at as creat_at, U.nickname as nickname, U.username as username '.
 		'from good_comments as C ' .
 		'left join good_user as U on C.username = U.username '.
+		'where C.is_deleted IS NULL '.
 		'order by C.id desc'
 	);
 	$result = $stmt->execute();
@@ -102,7 +103,8 @@
 							<?php echo escape($row['creat_at']); ?>
 							</span>
 							<?php if ($row['username'] === $username) { ?>
-                    			<a href="update_comment.php?id=<?php echo $row['id'] ?>">Edit</a>
+								<a href="update_comment.php?id=<?php echo $row['id'] ?>">Edit</a>
+								<a href="handle_delete_comment.php?id=<?php echo $row['id'] ?>">Delete</a>
                   			<? } ?>
 						</div>
 						<p class="card_content"><?php echo escape($row['content']); ?></p>
