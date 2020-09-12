@@ -11,9 +11,10 @@
   }
 
   $id = $_GET['id'];
-  $sql = "update good_comments set is_deleted=1 where id=?";
+  $username = $_SESSION['username'];
+  $sql = "update good_comments set is_deleted=1 where id=? and username=?";
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param('i', $id);
+  $stmt->bind_param('is', $id,  $username);
   $result = $stmt->execute();
   if (!$result) {
     die($conn->error);
