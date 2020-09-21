@@ -19,7 +19,7 @@
     );
     $result = $conn->query($sql);
     $row = $result->fetch_assoc();
-    return $row; // username, id, nickname
+    return $row; // username, id, nickname, role
   }
   
   function escape($str) {

@@ -12,10 +12,19 @@
 
   $username = $_SESSION['username'];
   $id = $_POST['id'];
+  $user = getUserFromUsername($username);
   $content = $_POST['content'];
-  $sql = "update good_comments set content=? where id=? and username=?";
+  if ($user["role"] == "ADMIN") {
+    $sql = "update good_comments set content=? where id=?";
+  } else {
+    $sql = "update good_comments set content=? where id=? and username=?";
+  }
   $stmt = $conn->prepare($sql);
-  $stmt->bind_param('sis', $content, $id, $username);
+  if ($user["role"] == "ADMIN") {
+    $stmt->bind_param('si', $content, $id);
+  } else {
+    $stmt->bind_param('sis', $content, $id, $username);
+  }
   $result = $stmt->execute();
   if (!$result) {
     die($conn->error);

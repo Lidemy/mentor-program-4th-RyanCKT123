@@ -34,5 +34,4 @@
     header("Location: login.php?errCode=2");
   }
 
-  // header("Location: index.php");
 ?>

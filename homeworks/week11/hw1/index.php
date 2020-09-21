@@ -69,6 +69,9 @@
 					</div>
 					<input class="board_btn" type="submit" />
 				</form>
+			<?php if ($user['role'] == 'ADMIN') { ?>
+				<spin><a class="board_btn" href="backstage.php">後台管理</a></spin>
+			<?php } ?>
 				<h3>Hello <?php echo $user['nickname'];?></h3>
 			<?php } ?>
 			<label class="form-switch">
@@ -112,7 +115,7 @@
 							<span class="card_time">
 							<?php echo escape($row['creat_at']); ?>
 							</span>
-							<?php if ($row['username'] === $username) { ?>
+							<?php if ($row['username'] === $username || $user['role'] == 'ADMIN') { ?>
 								<a href="update_comment.php?id=<?php echo $row['id'] ?>">Edit</a>
 								<a href="handle_delete_comment.php?id=<?php echo $row['id'] ?>">Delete</a>
                   			<? } ?>

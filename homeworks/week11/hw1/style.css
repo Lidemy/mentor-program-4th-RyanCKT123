@@ -94,6 +94,7 @@ body {
 }
 
 .board_btn {
+    cursor: pointer;
     padding: 10px 30px;
     border: 1px solid #c2dffb;
     border-radius: 5px;
@@ -193,3 +194,30 @@ body {
 .form-switch input:checked + i::before { transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0); }
   
 .form-switch input:checked + i::after { transform: translate3d(22px, 2px, 0); }
+
+/*Backstage_form*/
+
+table.adminCols {
+    border: 4px solid #555555;
+    width: 400px;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 10px auto;
+  }
+  table.adminCols td, table.adminCols th {
+    border: 1px solid #555555;
+    padding: 5px 10px;
+  }
+  table.adminCols tbody td {
+    font-size: 12px;
+  }
+
+  table.adminCols thead {
+    background: #c2dffb;
+  }
+  
+  table.adminCols thead th {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: left;
+  }
