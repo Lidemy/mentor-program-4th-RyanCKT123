@@ -6,7 +6,7 @@
   if (
     empty($_GET['id'])
   ) {
-    header('Location:index.php?errCode=1');
+    header('Location: index.php?errCode=1');
     die('資料不齊全');
   }
 
@@ -14,21 +14,17 @@
   $username = $_SESSION['username'];
   $user = getUserFromUsername($username);
   if ($user["role"] == "ADMIN") {
-    $sql = "update good_comments set is_deleted=1 where id=? ";
+    $sql = "update good_post set is_deleted=1 where id=? ";
   } else {
-    $sql = "update good_comments set is_deleted=1 where id=? and username=?";
+    header('Location: index.php?errCode=1');
+    die('You have no authority!!!');
   }
-  $sql = "update good_comments set is_deleted=1 where id=? ";
   $stmt = $conn->prepare($sql);
-  if ($user["role"] == "ADMIN") {
-    $stmt->bind_param('i', $id);
-  } else {
-    $stmt->bind_param('is', $id,  $username);
-  }
+  $stmt->bind_param('i', $id);
   $result = $stmt->execute();
   if (!$result) {
     die($conn->error);
   }
 
-  header("Location: index.php");
+  header("Location: backstage.php");
 ?>

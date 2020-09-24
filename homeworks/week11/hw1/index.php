@@ -176,12 +176,3 @@
   	</script>
 </body>
 </html>
-<!-- 
-select C.id as id, 
-		C.content as content, 
-		C.creat_at as creat_at, U.nickname as nickname, U.username as username 
-		from good_comments as C  
-		left join good_user as U on C.username = U.username 
-		where C.is_deleted IS NULL 
-		order by C.id desc
-		limit 5 offset 0  -->

@@ -122,10 +122,12 @@ body {
         line-height: normal;
         letter-spacing: normal;
         text-align: center;
+        text-decoration:none;
         color: #787878;
         margin-left: 20px;
         padding: 25px 0px;
         box-sizing: border-box;
+        text-decoration: none;
   }
 
 /* Banner */
@@ -194,12 +196,21 @@ body {
     color: #000000;
 }
 
-.edit_btn{
-    width: 50px;
-    height: 26px;
+.article_title .edit_btn{
     border: solid 1px #a8a8a8;
     background-color: #a8a8a8;
     color: white;
+    padding: 4px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.edit_btn{
+    border: solid 1px #a8a8a8;
+    background-color: #a8a8a8;
+    color: white;
+    padding: 4px;
+    text-decoration: none;
 }
 
 .stamp{
