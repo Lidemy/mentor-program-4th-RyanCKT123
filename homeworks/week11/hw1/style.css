@@ -89,6 +89,10 @@ body {
     color: #a0a0a0;
 }
 
+.card_info a {
+    text-decoration:none ;
+}
+
 .error {
     color: #a20606;
 }
@@ -219,5 +223,5 @@ table.adminCols {
   table.adminCols thead th {
     font-size: 15px;
     font-weight: bold;
-    text-align: left;
+    text-align: center;
   }
