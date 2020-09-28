@@ -81,6 +81,7 @@
             </select>
 			<textarea name="content" class="edit_article"><?php echo $row['content'] ?></textarea>
 			<input type="hidden" name="id" value="<?php echo $row['id'] ?>" />
+            <input type="hidden" name="page" value="<?php echo $_SERVER['HTTP_REFERER'] ?>" />
             <button type="submit" class="readmore_btn">提交</button>
 		</form>
     </section>

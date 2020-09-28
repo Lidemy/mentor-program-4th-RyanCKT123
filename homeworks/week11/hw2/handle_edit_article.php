@@ -2,11 +2,16 @@
   session_start();
   require_once('conn.php');
   require_once('utils.php');
+
+  $page = $_POST['page'];
   
   if (
-    empty($_POST['content'])
+    empty($_POST['content']) ||
+    empty($_POST['id']) ||
+    empty($_POST['title']) ||
+    empty($_POST['type'])
   ) {
-    header('Location: edit_article.php?errCode=1&id='.$_POST['id']);
+    header('Location: ' . $page);
     die('資料不齊全');
   }
 
@@ -16,7 +21,6 @@
   $content = $_POST['content'];
   $title = $_POST['title'];
   $type = $_POST['type'];
-  print_r($type);
 
 
   $sql = "update good_post set content=?, title=?, type=? where id=?";
@@ -27,5 +31,5 @@
     die($conn->error);
   }
 
-  header("Location: backstage.php");
+  header('Location: ' . $page);
 ?>

@@ -77,8 +77,8 @@
                     <div class="stamp_time"><?php echo escape($row['created_at']); ?></div>
                     <div class="stamp_classfy"><?php echo escape($row['type']); ?></div>
                 </div>
-                <div class="article"><?php echo escape($row['content']); ?></div>
-                <button type="button" class="readmore_btn" >READ MORE</button>
+                <div class="article"><?php echo substr(escape($row['content']), 0, 200); ?></div>
+                <a type="button" class="readmore_btn" href="post.php?id=<?php echo $row['id'] ?>" >READ MORE</a>
             </div>
         <?php } ?>
     </section>
