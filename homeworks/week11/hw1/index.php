@@ -69,10 +69,10 @@
 					</div>
 					<input class="board_btn" type="submit" />
 				</form>
-			<?php if ($user['role'] == 'ADMIN') { ?>
-				<spin><a class="board_btn" href="backstage.php">後台管理</a></spin>
-			<?php } ?>
-				<h3>Hello <?php echo $user['nickname'];?></h3>
+					<?php if ($user['role'] == 'ADMIN') { ?>
+						<spin><a class="board_btn" href="backstage.php">後台管理</a></spin>
+					<?php } ?>
+				<h3>Hello <?php echo escape($user['nickname']); ?></h3>
 			<?php } ?>
 			<label class="form-switch">
   				<input type="checkbox" name="checkbox">
@@ -120,7 +120,7 @@
 								<a href="handle_delete_comment.php?id=<?php echo $row['id'] ?>">Delete</a>
                   			<? } ?>
 						</div>
-						<p class="card_content"><?php echo escape($row['content']); ?></p>
+						<div class="card_content"><?php echo escape($row['content']); ?></div>
 					</div>
 				</div>
 			<?php } ?>
