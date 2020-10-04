@@ -1,0 +1,227 @@
+body {
+    margin: 0;
+    background: #f7f7f7
+}
+
+.warning {
+    background: #ffc4c6;
+    color: #a20606;
+    padding: 10px;
+    text-align: center;
+}
+
+.board {
+    position: relative;
+    background: white;
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 10px 30px;
+    box-shadow: 1px 1px 3px #e8e8e8;
+    border-radius: 5px;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.board_newcomment_form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #c2dffb;
+}
+
+.board_nickname {
+    margin-bottom: 10px;
+}
+  
+.board_nickname input {
+    border: 1px solid #c2dffb;
+    padding: 5px;
+}
+
+.board_submit_btn {
+    padding: 10px;
+    border: 1px solid #c2dffb;
+    border-radius: 5px;
+    width: 100px;
+    color: #583c63;
+    font-size: 16px;
+    background: white;
+}
+
+.board__hr {
+    margin: 20px auto;
+    height: 2px;
+    background: #e8e8e8;
+    max-width: 95%;
+}
+
+.card {
+    margin: 20px 0;
+    min-height: 70px;
+    display: flex;
+    box-sizing: border-box;
+}
+
+.card_avatar {
+    min-width: 50px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #e4f0fb;
+}
+
+.card_body {
+    margin-left: 10px;
+}
+
+.card_content {
+    margin-top: 8px;
+    max-width: 100%;
+    word-break: break-word;
+    white-space: pre-line;
+}
+
+.card_author {
+    color: #5c9edc;
+    font-weight: bold;
+}
+  
+.card_time {
+    color: #a0a0a0;
+}
+
+.card_info a {
+    text-decoration:none ;
+}
+
+.error {
+    color: #a20606;
+}
+
+.board_btn {
+    cursor: pointer;
+    padding: 10px 30px;
+    border: 1px solid #c2dffb;
+    border-radius: 5px;
+    color: black;
+    font-size: 16px;
+    background: white;
+    min-width: 20px;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.board_nickname-form {
+    margin-top: 20px;
+  }
+  
+.hide {
+    display: none;
+  }
+
+.page-info {
+    text-align: center;
+}
+
+.paginator {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.paginator a {
+    text-decoration: none;
+    color: #5c9edc;
+    border: 1px solid #5c9edc;
+    padding: 10px;
+}
+
+
+
+/*Night-mode*/
+
+.form-switch {
+    display: inline-block;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    position: absolute;
+    right: 20px;
+  }
+  
+.form-switch i {
+    position: relative;
+    display: inline-block;
+    margin-right: .5rem;
+    width: 46px;
+    height: 26px;
+    background-color: #e6e6e6;
+    border-radius: 23px;
+    vertical-align: text-bottom;
+    transition: all 0.3s linear;
+  }
+  
+.form-switch i::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 42px;
+    height: 22px;
+    background-color: #fff;
+    border-radius: 11px;
+    transform: translate3d(2px, 2px, 0) scale3d(1, 1, 1);
+    transition: all 0.25s linear;
+  }
+  
+.form-switch i::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 22px;
+    background-color: #fff;
+    border-radius: 11px;
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.24);
+    transform: translate3d(2px, 2px, 0);
+    transition: all 0.2s ease-in-out;
+  }
+  
+.form-switch:active i::after {
+    width: 28px;
+    transform: translate3d(2px, 2px, 0);
+  }
+  
+.form-switch:active input:checked + i::after { transform: translate3d(16px, 2px, 0); }
+  
+.form-switch input { display: none; }
+  
+.form-switch input:checked + i { background-color: #4BD763; }
+  
+.form-switch input:checked + i::before { transform: translate3d(18px, 2px, 0) scale3d(0, 0, 0); }
+  
+.form-switch input:checked + i::after { transform: translate3d(22px, 2px, 0); }
+
+/*Backstage_form*/
+
+table.adminCols {
+    border: 4px solid #555555;
+    width: 400px;
+    text-align: center;
+    border-collapse: collapse;
+    margin: 10px auto;
+  }
+  table.adminCols td, table.adminCols th {
+    border: 1px solid #555555;
+    padding: 5px 10px;
+  }
+  table.adminCols tbody td {
+    font-size: 12px;
+  }
+
+  table.adminCols thead {
+    background: #c2dffb;
+  }
+  
+  table.adminCols thead th {
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+  }
