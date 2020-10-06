@@ -10,6 +10,10 @@
         .card{
             margin-top:12px ;    
         }
+
+        .btn-primary {
+            margin-top:12px ;
+        }
     </style>
     <script>
         function escape(toOutput){
@@ -25,6 +29,7 @@
             const html = `
                 <div class="card">
                     <div class="card-body">
+                        <input name="cursorBasenum" type="hidden" value="${comment.id}"></input>
                         <h5 class="card-title">${escape(comment.nickname)}</h5>
                         <p class="card-text">${escape(comment.content)}</p>
                     </div>
@@ -37,22 +42,31 @@
             }
         }
 
+        function getCommentsAPI(sitrKey, before, cb) {
+            let url = `http://mentor-program.co/mtr04group5/ryanCKT/week12/board_api/api_comments.php?site_key=${siteKey}`
+            if(before) {
+                url += '&before=' + before
+            }
+            $.ajax({
+                url,
+                }).done(function(data) {
+                cb(data)
+            });
+        }
+
+
+        const siteKey = 'good'
+        const loadMorebutton = '<button name="loadMore" class="btn btn-primary loadMore">載入更多</button>'
+        let lastID = null;
+        let isEnd = false;
+
         $(document).ready(() => {
             const commentDOM = $('.comments');
-            $.ajax({
-                url: "http://mentor-program.co/mtr04group5/ryanCKT/week12/board_api/api_comments.php?site_key=good",
-                }).done(function(data) {
-                    if(!data.ok){
-                        alert(data.message)
-                        return
-                    }
+            getComments()
+            $('.container').on('click', '.loadMore', () => {
+                getComments()
+            })
 
-                    const comments = data.message;
-                    console.log(comments);
-                    for(let comment of comments) {
-                        appendCommentToDOM(commentDOM, comment, false)
-                    }
-            });
             $('.add_commit_form').submit(e => {
                 e.preventDefault();
                 const newCommentdata = {
@@ -75,6 +89,32 @@
                     });
             })
         })
+    
+        function getComments() {
+            const commentDOM = $('.comments');
+            if (isEnd) {
+                return
+            }
+            $('.loadMore').hide()
+            getCommentsAPI(siteKey, lastID, data => {
+                if(!data.ok){
+                        alert(data.message)
+                        return
+                    }
+                    const comments = data.message;
+                    for(let comment of comments) {
+                        appendCommentToDOM(commentDOM, comment, false)
+                    }
+                    let length = comments.length
+                    if (length === 0) {
+                        isEnd = ture
+                        $('.loadMore').hide()
+                    } else {
+                        lastID = comments[length - 1].id
+                        $('.container').append(loadMorebutton)  
+                    }
+            })
+        }
     </script>
 </head>
 <body>
