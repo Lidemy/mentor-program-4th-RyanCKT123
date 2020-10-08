@@ -42,15 +42,60 @@
     let id = 1
     let todoCount = 0
     let uncompeleteTodoCount = 0
+    
     const template = `
     <div class="todo list-group-item list-group-item-action justify-content-between align-items-center">
-            <div class="todo__content-wrapper custom-control custom-checkbox">
+            <div class="todo__content-wrapper custom-control custom-checkbox {todoClass}">
               <input type="checkbox" class="check-todo custom-control-input" id="todo-{id}">
               <label class="todo__content custom-control-label" for="todo-{id}">{content}</label>
             </div>
             <button type="button" class="btn-delete btn btn-danger">刪除</button>
           </div>
     `
+    const searchParams = new URLSearchParams(window.location.search);
+    const todoId = searchParams.get('id')
+
+    if (todoId) {
+      $.getJSON('http://mentor-program.co/mtr04group5/ryanCKT/week12/todoApi/get_todos.php?id=' + todoId, function(data) {
+        const todos = JSON.parse(data.data.data)
+        restoreTodos(todos)
+      });
+    }
+
+    function restoreTodos(todos) {
+        if (todos.length === 0) return
+        id = parseInt(todos[todos.length - 1].id) + 1;
+        for(let i = 0; i<todos.length; i++) {
+          const todo = todos[i]
+          console.log('todo:', todo.content, 'id:', todo.id)
+          $('.todos').append(
+            template
+                .replace('{content}', escapeHtml(todo.content))
+                .replace(/{id}/g, todo.id)
+                .replace('{todoClass}', todo.isDone ? 'checked' : '')
+          )
+          todoCount += 1
+          if (todo.isDone) {
+            $('#todo-' + todo.id).prop('checked', true)
+          }
+          if (!todo.isDone) {
+            uncompeleteTodoCount += 1
+          }
+        }
+        const value = $('.input-todo').val();
+        if (!value) return
+        $('.todos').append(
+            template
+                .replace('{content}', escapeHtml(value))
+                .replace(/{id}/g, id)
+        )
+        id += 1
+        todoCount += 1
+        uncompeleteTodoCount += 1
+        updateCounter()
+        $('.input-todo').val('');
+    }
+
     $('.btn-add').click(() => {
         addTodo();
     })
@@ -117,8 +162,23 @@
                 isDone: $(element).hasClass('checked')
             })
         })
-        console.log(JSON.stringify(todos))
+        const data = JSON.stringify(todos)
+        $.ajax({
+          type: 'POST',
+          url: 'http://mentor-program.co/mtr04group5/ryanCKT/week12/todoApi/add_todo.php',
+          data: {
+            todo: data
+          },
+          success: function(res) {
+            const respID = res.id
+            window.location = 'index.html?id=' + respID
+          },
+          error: function() {
+            alert('Error')
+          }
+      })
     })
+
     
     function escapeHtml(unsafe) {
       return unsafe
