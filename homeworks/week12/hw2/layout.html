@@ -42,48 +42,15 @@
     let id = 1
     let todoCount = 0
     let uncompeleteTodoCount = 0
-    let todos = []
-    
     const template = `
     <div class="todo list-group-item list-group-item-action justify-content-between align-items-center">
-            <div class="todo__content-wrapper custom-control custom-checkbox {todoClass}">
+            <div class="todo__content-wrapper custom-control custom-checkbox">
               <input type="checkbox" class="check-todo custom-control-input" id="todo-{id}">
               <label class="todo__content custom-control-label" for="todo-{id}">{content}</label>
             </div>
             <button type="button" class="btn-delete btn btn-danger">刪除</button>
           </div>
     `
-    const searchParams = new URLSearchParams(window.location.search);
-    const todoId = searchParams.get('id')
-
-    if (todoId) {
-      $.getJSON('http://mentor-program.co/mtr04group5/ryanCKT/week12/todoApi/get_todos.php?id=' + todoId, function(data) {
-        todos = JSON.parse(data.data.data)
-        render()
-      });
-    }
-
-    function render() {
-        if (todos.length === 0) return
-        $('.todos').empty()
-        id = parseInt(todos[todos.length - 1].id) + 1;
-        todoCount = todos.length
-        uncompeleteTodoCount = todos.filter(todo => !todo.isDone).length
-        for(let i = 0; i<todos.length; i++) {
-          const todo = todos[i]
-          $('.todos').append(
-            template
-                .replace('{content}', escapeHtml(todo.content))
-                .replace(/{id}/g, todo.id)
-                .replace('{todoClass}', todo.isDone ? 'checked' : '')
-          )
-          if (todo.isDone) {
-            $('#todo-' + todo.id).prop('checked', true)
-          }
-        }
-        updateCounter()
-    }
-
     $('.btn-add').click(() => {
         addTodo();
     })
@@ -95,29 +62,32 @@
     })
 
     $('.todos').on('click', '.btn-delete', (e) => {
-        const deleteID = $(e.target).parent().find('.check-todo').attr('id').replace('todo-', '');
-        todos = todos.filter(todo => {
-          if(todo.id === Number(deleteID)) return false
-          return true
-        })
-        render()
+        $(e.target).parent().remove();
+        todoCount -= 1
+        const isChecked = $(e.target).parent().find('.check-todo').is(":checked")
+        console.log(isChecked)
+        if (!isChecked) {
+            uncompeleteTodoCount -= 1
+        }
+        updateCounter()
     })
 
     $('.todos').on('change', '.check-todo', (e) => {
         const target = $(e.target)
         const isChecked = target.is(":checked")
-        const updateId = target.attr('id').replace('todo-', '');
-        for(let i = 0; i<todos.length; i++) {
-          if (todos[i].id === Number(updateId)) {
-            todos[i].isDone = isChecked
-          }
+        if (isChecked) {
+            target.parents('.todo').addClass('checked');
+            uncompeleteTodoCount -= 1;
+        } else {
+            target.parents('.todo').removeClass('checked')
+            uncompeleteTodoCount += 1
         }
-        render()
+        updateCounter()
     })
 
     $('.clear-all').click(() => {
-        todos = todos.filter(todo => !todo.isDone)
-        render()
+        todoCount -= $('.todo.checked').length
+        $('.todo.checked').remove()
     })
 
     $('.options').on('click', 'div', e => {
@@ -137,24 +107,18 @@
     })
 
     $('.btn-save').click(() => {
-        console.log('todos', todos)
-        const data = JSON.stringify(todos)
-        $.ajax({
-          type: 'POST',
-          url: 'http://mentor-program.co/mtr04group5/ryanCKT/week12/todoApi/add_todo.php',
-          data: {
-            todo: data
-          },
-          success: function(res) {
-            const respID = res.id
-            window.location = 'index.html?id=' + respID
-          },
-          error: function() {
-            alert('Error')
-          }
-      })
+        let todos = []
+        $('.todo').each((i, element) => {
+            const input = $(element).find('.check-todo')
+            const label = $(element).find('.todo__content')
+            todos.push({
+                id: input.attr('id').replace('todo-', ''),
+                content: label.text(),
+                isDone: $(element).hasClass('checked')
+            })
+        })
+        console.log(JSON.stringify(todos))
     })
-
     
     function escapeHtml(unsafe) {
       return unsafe
@@ -168,12 +132,15 @@
     function addTodo() {
         const value = $('.input-todo').val();
         if (!value) return
-        todos.push({
-          id: id,
-          content: value,
-          isDone: false
-        })
-        render()
+        $('.todos').append(
+            template
+                .replace('{content}', escapeHtml(value))
+                .replace(/{id}/g, id)
+        )
+        id += 1
+        todoCount += 1
+        uncompeleteTodoCount += 1
+        updateCounter()
         $('.input-todo').val('');
     }
 
