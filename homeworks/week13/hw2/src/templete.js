@@ -4,7 +4,7 @@ const loadMorebutton = '<button name="loadMore" class="btn btn-primary loadMore"
 
 
 export function getLoadMoreButton(prefix) {
-    return `<button name="loadMore" class="btn btn-primary ${prefix}-loadMore">載入更多</button>`
+    return `<button name="loadMore" class="btn btn-primary ${prefix}">載入更多</button>`
 }
 
 export function getForm(className, commentsClassName) {

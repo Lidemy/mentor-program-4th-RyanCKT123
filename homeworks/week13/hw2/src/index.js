@@ -30,7 +30,6 @@ export function init(options) {
     appendStyle(cssTemplate)
     commentDOM = $(commentsSelector);
     getNewComments()
-    console.log(loadMoreClassName)
     $('.container').on('click', '.'+loadMoreClassName, () => {
         getNewComments()
     })
