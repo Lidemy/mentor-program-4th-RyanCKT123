@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Twich API</title>
+    <title>Twich API by Fetch</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src = './main.js'></script>
     <style>
         * {
             padding: 0;
@@ -213,129 +215,5 @@
         <div class="container">
         </div>
     </section>
-    
-    
-    <script>
-        const clientID = 'rnlfn3zp206qq18fb8nrncvjqcq0uv'
-        const acceptType = 'application/vnd.twitchtv.v5+json'
-        const GetStreamUrl = 'https://api.twitch.tv/kraken/streams'
-        const GetTopUrl = 'https://api.twitch.tv/kraken/games/top/?limit=5'
-        // const li = document.createElement('li')
-
-        function getTopgame(cb) {
-            const request = new XMLHttpRequest()
-            request.onload = function() {
-                if (request.status >= 200 && request.status < 400) {
-                    let result
-                    try {
-                        result = JSON.parse(request.responseText)
-                    } catch(err) {
-                        cb(errorMessage)
-                        return
-                }
-                if (!result.top) {
-                    cb(errorMessage)
-                    return
-                }
-                cb(null, result)
-                } else {
-                cb(errorMessage)
-                }
-            }
-            request.onerror = function() {
-                console.log('error')
-            }
-            request.open('GET' ,GetTopUrl)
-            request.setRequestHeader('Client-ID', clientID)
-            request.setRequestHeader('Accept', acceptType)
-            request.send()
-        }
-  
-
-        getTopgame(function(err, result) {
-                if (err) {
-                    alert(err)
-                return
-                }
-                for (let i = 0; i < result.top.length; i++) {
-                    let li = document.createElement('li')
-                    let text = result.top[i].game.name
-                    // console.log(text)
-                    li.innerHTML = `
-                        <a herf="#" class='list_btn'>${text}</a>
-                    `
-                    document.querySelector('.navbar_list').appendChild(li)
-                }
-                const check_btn = document.querySelectorAll('.list_btn')
-                if (check_btn) {
-                    for (let i = 0; i < check_btn.length; i++) {
-                        check_btn[i].addEventListener("click", function() {
-                            let currentTitle = document.querySelector('.title h2')
-                            if(currentTitle) {
-                                currentTitle.remove();
-                            }
-                            let h2 = document.createElement('h2')
-                            h2.innerHTML = `
-                                ${check_btn[i].innerText}
-                            `
-                            document.querySelector('.title').prepend(h2)
-                            let gameName = check_btn[i].innerText
-                            let blocks = document.querySelectorAll('.block')
-                            if (blocks) {
-                                for (let i = 0; i < blocks.length; i++) {
-                                    blocks[i].remove('.block');
-                                }
-                            }
-                            GetStream(gameName)
-                        });
-                    }
-                }
-            })
-
-
-        function GetStream(gameName) {
-            const request = new XMLHttpRequest()
-            const limit = 20
-            request.addEventListener('load', function() {
-                if (request.status >= 200 && request.status < 400) {
-                    const result = JSON.parse(request.responseText)
-                    console.log(result)
-                    for (let i = 0; i < result.streams.length; i++) {
-                        let div = document.createElement('div')
-                        div.classList.add('block')
-                        let desc = result.streams[i].channel.status
-                        let channelID = result.streams[i].channel.display_name
-                        let logoUrl = result.streams[i].channel.logo
-                        let previewUrl = result.streams[i].preview.medium
-                        console.log(previewUrl)
-                        div.innerHTML = `
-                            <img class='bgc' src = ${previewUrl}> 
-                            <div class="info">
-                                <img src = ${logoUrl}>
-                                <div class="channel">
-                                    <div class="ch_Name">${desc}</div>
-                                    <div class="ch_streamer">${channelID}</div>
-                                </div>
-                            </div>
-                        `
-                        document.querySelector('.container').appendChild(div)
-                        // let bolck = document.querySelectorAll('.block')
-                        // console.log(bolck[i])
-                        // block[i].style.backgroundImage = `url(${previewUrl})`;
-                    }
-                } else {
-                    alert(errorMessage)
-                }
-            })
-            request.onerror = function() {
-                console.log('error')
-            }
-            request.open('GET' ,GetStreamUrl + `/?game=${gameName}&limit=${limit}`)
-            request.setRequestHeader('Client-ID', clientID)
-            request.setRequestHeader('Accept', acceptType)
-            request.send()
-        }
-
-    </script>
 </body>
 </html>
