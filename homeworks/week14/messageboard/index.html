@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(() => {
+            commentPlugin.init({
+            siteKey: 'good',
+            apiUrl: 'http://mentor-program.co/mtr04group5/ryanCKT/week12/board_api',
+            containerSelector: '.comments-area'
+            })
+        })
+    </script>
+    <title>DiscussionsPlugin</title>
+    <style>
+        .card{
+            margin-top:12px ;    
+        }
+
+        .btn-primary {
+            margin-top:12px ;
+        }
+    </style>
+    <script src="./dist/main.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="comments-area"></div>
+    </div>
+</body>
+</html>
